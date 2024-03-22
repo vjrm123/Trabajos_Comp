@@ -17,7 +17,7 @@ std::string NumeroRomano(int Numero) {
 
 void mostrarMenu() {
     std::cout << "********************************************" << std::endl;
-    std::cout << "**              Menú de opciones           **" << std::endl;
+    std::cout << "**              Menu de opciones           **" << std::endl;
     std::cout << "********************************************" << std::endl;
     std::cout << "1. Convertir un número entero a romano" << std::endl;
     std::cout << "2. Salir" << std::endl;

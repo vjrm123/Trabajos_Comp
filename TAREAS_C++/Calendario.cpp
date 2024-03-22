@@ -5,54 +5,70 @@ class Calendario {
     private:
         int Mes, Anio;
     public:
-        Calendario(int Mes, int Anio) : Mes((Mes <= 0 ? 1 : Mes)), Anio((Anio <= 0 ? 1 : Anio)){}
+        Calendario(int Mes, int Anio) : Mes((Mes > 1 && Mes <= 12) ? Mes : 1), Anio((Anio > 0 ) ? Anio : 1) {}
 
-        bool EsBisiesto() {
-            if(Anio % 4 == 0 && (Anio % 100 != 0 || Anio % 400 == 0)) {
+        bool EsBisiesto(){
+            if(Anio % 4 == 0 && (Anio % 100 != 0 || Anio % 400 == 0 )) {
                 return true;
             } else {
                 return false;
             }
         }
 
-        int ObtenerDiasDelMes() {
+        int ObtenerDiasDelmes(){
             if(Mes == 2) {
                 return EsBisiesto() ? 29 : 28;
-            } else if (Mes == 4 || Mes == 6 || Mes == 9 || Mes == 11 ) {
+            } 
+            else if(Mes == 4 || Mes == 6 || Mes == 9 || Mes == 11) {
                 return 30;
             } else {
                 return 31;
             }
         }
-
-        void imprimirCalendario() {
-        int numDias = ObtenerDiasDelMes();
-        int primerDiaSemana = 1;
-
-        std::cout << "==============================+" << std::endl;
-        std::cout << "      " << Mes << " / " << Anio << std::endl;
-        std::cout << "==============================+" << std::endl;
-        std::cout << "  D   L   M   M   J   V   S" << std::endl;
-
-        for (int i = 0; i < primerDiaSemana; i++) {
-            std::cout << "    ";
+        
+        std::string ImprimirMes(int Numero) {
+            std::string Arrays[] = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"};
+            return Arrays[Numero -1];
         }
 
-        for (int dia = 1; dia <= numDias; dia++) {
-            std::cout << std::setw(3) << dia << " ";
-            if ((dia + primerDiaSemana) % 7 == 0) {
-                std::cout << std::endl;
+        int ObtenerPrimerDiaSemana() {
+            int ajusteMes = (14 - Mes) / 12;
+            int ajusteAnio = Anio - ajusteMes;
+            int mesAjustado = Mes + 12 * ajusteMes - 2;
+            int primerDiaSemana = (1 + ajusteAnio + ajusteAnio / 4 - ajusteAnio / 100 + ajusteAnio / 400 + (31 * mesAjustado) / 12) % 7;
+            return primerDiaSemana;
+        }
+
+        void ImprimirCalendario(){
+            int NumDias = ObtenerDiasDelmes();
+            int PrimerDiaSemana = ObtenerPrimerDiaSemana();
+            
+            std::cout<< "========================================\n";
+            std::cout<< "  MES/AÑO ELEGIDO: " << ImprimirMes(Mes) << " / " << this->Anio << "\n";
+            std::cout<< "========================================\n";
+            std::cout<< "  D   L   M   M   J   V   S  \n";
+
+            for(int i=0; i < PrimerDiaSemana; i++) {
+                std::cout<< "    ";
             }
+            for(int dia = 1; dia <= NumDias; dia ++) {
+                std::cout<< std::setw(3) << dia << " ";
+                if((PrimerDiaSemana + dia ) % 7 == 0) {
+                    std::cout<<"\n";
+                }
+            }
+            std::cout<< "\n" << "========================================\n";
         }
-
-        std::cout << std::endl << "==============================+" << std::endl;
-    }
 };
 
-int main(){
-    int anio=2024;
-    int mes = 3;
-    Calendario calendario(mes, anio);
-    calendario.imprimirCalendario();
+int main() {
+    int Mes = 3;
+    int Anio = 2024;
+
+    Calendario* calendario = new Calendario(Mes, Anio);
+    calendario->ImprimirCalendario();
+
+    delete calendario;
+
     return 0;
 }
