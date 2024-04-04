@@ -16,12 +16,13 @@ std::string NumeroRomano(int Numero) {
 }
 
 void mostrarMenu() {
-    std::cout << "********************************************" << std::endl;
-    std::cout << "**              Menu de opciones           **" << std::endl;
-    std::cout << "********************************************" << std::endl;
-    std::cout << "1. Convertir un número entero a romano" << std::endl;
-    std::cout << "2. Salir" << std::endl;
-    std::cout << "********************************************" << std::endl;
+    std::cout << "********************************************\n";
+    std::cout << " **              BIENVENIDO             **\n";
+    std::cout << "********************************************\n";
+    std::cout << "Seleccione una opcion...\n";
+    std::cout << "1. Convertir un numero entero a romano\n";
+    std::cout << "2. Salir\n";
+    std::cout << "********************************************\n";
 }
 
 int main() {
@@ -29,19 +30,22 @@ int main() {
     
     do {
         mostrarMenu();
-        
-        std::cout << "Ingrese una opción: ";
         std::cin >> opcion;
         
         switch (opcion) {
             case 1: {
                 int numero;
-                std::cout << "Ingrese un número entero: ";
+                std::cout << "Ingrese un numero entero: ";
                 std::cin >> numero;
                 
                 std::string numeroRomano = NumeroRomano(numero);
-                std::cout << "El número " << numero << " en números romanos es: " << numeroRomano << std::endl;
+                std::cout<< "*************************************************\n";
+                std::cout << "El numero " << numero << " en numeros romanos es: " << numeroRomano << std::endl;
+                std::cout<< "*************************************************\n";
                 
+                std::cout << "Presione Enter para continuar...";
+                std::cin.ignore();
+                std::cin.get();
                 break;
             }
             case 2: {
@@ -49,7 +53,7 @@ int main() {
                 break;
             }
             default: {
-                std::cout << "Opción inválida. Por favor, ingrese una opción válida." << std::endl;
+                std::cout << "Opcion invalida " << std::endl;
                 break;
             }
         }
