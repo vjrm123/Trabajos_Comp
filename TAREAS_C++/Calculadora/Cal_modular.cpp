@@ -43,13 +43,15 @@ int Calculadora::Restar() {
 int Calculadora::Multiplicacion() {
 	return ((PriOperando * SegOperando) % Modulo);
 }
-
-int calcularMCD(int numero1, int numero2) {
-	if (numero2 == 0) {
-		return numero1;
-	}
-	return calcularMCD(numero2, numero1 % numero2);
+int Calculadora::calcularMCD(int a, int b) {
+    while (b != 0) {
+        int temporal = b;
+        b = a % b;
+        a = temporal;
+    }
+    return a;
 }
+
 
 int Calculadora::Inverso(int numero, int modulo) {
 	if (calcularMCD(numero, modulo) != 1) {
@@ -72,9 +74,9 @@ int Calculadora::Inverso(int numero, int modulo) {
 	return coeficiente2;
 }
 
-void ImprimirMenu() {
+void Calculadora::ImprimirMenu() {
 	std::cout<<"********************************\n";
-	std::cout<<"****      BIENVENIDO       ****\n";
+	std::cout<<"** BIENVENIDO A LA CALCULADORA MODULAR **\n";
 	std::cout<<"********************************\n";
 	std::cout<< "Seleccione una opcion...\n";
 	std::cout<< "1. Sumar\n";
@@ -85,69 +87,67 @@ void ImprimirMenu() {
 	std::cout<<"********************************\n";	
 }
 
-int main(){
-	Calculadora calculadora;
-	int Opcion, PriOperando, SegOperando, Modulo, Resultado;
+void Calculadora::Menu() {
+        int Opcion, PriOperando, SegOperando, Modulo, Resultado;
 
-	do {
-		ImprimirMenu();
-		std::cin>>Opcion;
-		switch(Opcion) {
-			case 1:
-				std::cout<< "Ingrese el primer operando: "; std::cin>>PriOperando;
-				std::cout<< "Ingrese el modulo: "; std::cin>>Modulo;
-				std::cout<< "Ingrese el segundo operando: "; std::cin>>SegOperando;
-				calculadora = Calculadora(Modulo, PriOperando, SegOperando);
-				Resultado = calculadora.Sumar();
-				calculadora.informacion('+', Resultado);
+        do {
+            ImprimirMenu();
+            std::cin>>Opcion;
+            switch(Opcion) {
+                case 1:
+                    std::cout<< "Ingrese el primer operando: "; std::cin>>PriOperando;
+                    std::cout<< "Ingrese el modulo: "; std::cin>>Modulo;
+                    std::cout<< "Ingrese el segundo operando: "; std::cin>>SegOperando;
+                    *this = Calculadora(Modulo, PriOperando, SegOperando);
+                    Resultado = Sumar();
+                    informacion('+', Resultado);
 
 
-				std::cout << "Presione Enter para continuar...";
-                std::cin.ignore();
-                std::cin.get();
-				break;
-			case 2:
-				std::cout<< "Ingrese el primer operando: "; std::cin>>PriOperando;
-				std::cout<< "Ingrese el modulo: "; std::cin>>Modulo;
-				std::cout<< "Ingrese el segundo operando: "; std::cin>>SegOperando;	
-				calculadora = Calculadora(Modulo, PriOperando, SegOperando);
-				Resultado = calculadora.Restar();
-				calculadora.informacion('-', Resultado);
+                    std::cout << "Presione Enter para continuar...";
+                    std::cin.ignore();
+                    std::cin.get();
+                    break;
+                case 2:
+                    std::cout<< "Ingrese el primer operando: "; std::cin>>PriOperando;
+                    std::cout<< "Ingrese el modulo: "; std::cin>>Modulo;
+                    std::cout<< "Ingrese el segundo operando: "; std::cin>>SegOperando;  
+                    *this = Calculadora(Modulo, PriOperando, SegOperando);
+                    Resultado = Restar();
+                    informacion('-', Resultado);
 
-				std::cout << "Presione Enter para continuar...";
-                std::cin.ignore();
-                std::cin.get();
-				break;
-			case 3:
-				std::cout<< "Ingrese el primer operando: "; std::cin>>PriOperando;
-				std::cout<< "Ingrese el modulo: "; std::cin>>Modulo;
-				std::cout<< "Ingrese el segundo operando: "; std::cin>>SegOperando;	
-				calculadora = Calculadora(Modulo, PriOperando, SegOperando);
-				Resultado = calculadora.Multiplicacion();
-				calculadora.informacion('*', Resultado);
+                    std::cout << "Presione Enter para continuar...";
+                    std::cin.ignore();
+                    std::cin.get();
+                    break;
+                case 3:
+                    std::cout<< "Ingrese el primer operando: "; std::cin>>PriOperando;
+                    std::cout<< "Ingrese el modulo: "; std::cin>>Modulo;
+                    std::cout<< "Ingrese el segundo operando: "; std::cin>>SegOperando;  
+                    *this = Calculadora(Modulo, PriOperando, SegOperando);
+                    Resultado = Multiplicacion();
+                    informacion('*', Resultado);
 
-				std::cout << "Presione Enter para continuar...";
-                std::cin.ignore();
-                std::cin.get();
-				break;
-			case 4:
-				std::cout<< "Ingrese el numero: "; std::cin>>PriOperando;
-				std::cout<< "Ingrese el modulo: "; std::cin>>Modulo;
-				Resultado = calculadora.Inverso(PriOperando, Modulo);
-				std::cout<< Resultado << "\n";
+                    std::cout << "Presione Enter para continuar...";
+                    std::cin.ignore();
+                    std::cin.get();
+                    break;
+                case 4:
+                    std::cout<< "Ingrese el numero: "; std::cin>>PriOperando;
+                    std::cout<< "Ingrese el modulo: "; std::cin>>Modulo;
+                    Resultado = Inverso(PriOperando, Modulo);
+                    std::cout<< Resultado << "\n";
 
-				std::cout << "Presione Enter para continuar...";
-                std::cin.ignore();
-                std::cin.get();
-				break;
-			case 5:
-				std::cout<< "Saliendo...";
-				break;
-			default:
-				std::cout<<"Opcion invalida!!!";
-				break;
-		}
-	}while(Opcion != 5);
+                    std::cout << "Presione Enter para continuar...";
+                    std::cin.ignore();
+                    std::cin.get();
+                    break;
+                case 5:
+                    std::cout<< "Saliendo...\n";
+                    break;
+                default:
+                    std::cout<<"Opcion invalida!!!";
+                    break;
+            }
+        }while(Opcion != 5);
+    }
 
-	return 0;
-}
