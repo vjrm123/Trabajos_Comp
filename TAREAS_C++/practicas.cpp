@@ -1,24 +1,28 @@
 #include <iostream>
-#include <bitset>
-using namespace std;
 
-bitset<23>Redondeo(bitset<49>J) {
-    bitset<23>resultado(0);
-    for(int i=0; i < 23; i++) {
-        resultado[i] = J[i];
+bool BusquedaBinaria(int* inicio, int* final, int valor) {
+    while (inicio <= final) {
+        int* medio = inicio + (final - inicio) / 2;
+        if (*medio == valor) {
+            return true;
+        } else if (*medio < valor) {
+            inicio = medio + 1;
+        } else {
+            final = medio - 1;
+        }
     }
-    return resultado;
+    return false;
 }
 
-bitset<49>SumaBinaria(bitset<49>X, bitset<49>Y) {
-    bitset<49>Suma;
-    bool Acarreo = 0;
-    for(int i=0; i < 49; i++) {
-        bool bitA = X[i];
-        bool bitB = Y[i];
-        bool bits = bitA ^ bitB ^ Acarreo;
-        Acarreo = (bitA && bitB) || (bitA && Acarreo) || (bitB && Acarreo);
-        Suma[i] = bits;
+int main() {
+    int array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int valor = 19;
+    int size = sizeof(array) / sizeof(int);
+    bool encontrado = BusquedaBinaria(array, array + size, valor);
+    if (encontrado) {
+        std::cout << "El valor " << valor << " se encuentra en el array.\n";
+    } else {
+        std::cout << "El valor " << valor << " no se encuentra en el array.\n";
     }
-    return Suma;
+    return 0;
 }
