@@ -1,7 +1,7 @@
 #include "Cal_modular.h"
 #include <iostream>
 
-Calculadora::Calculadora() {}
+Calculadora::Calculadora() : PriOperando(0), SegOperando(0), Modulo(0){}
 Calculadora::Calculadora(int mod, int op1, int op2) : Modulo(mod), PriOperando(op1), SegOperando(op2)
 {
     if (this->PriOperando < 0 || this->SegOperando < 0) {
@@ -26,10 +26,12 @@ int Calculadora::ajuste(int Numero) {
 }
 
 void Calculadora::informacion(char Signo, int Resultado) {
-	std::cout<<"********************************\n";
-	std::cout << "Operacion: ("<< PriOperando << " % " << Modulo << ") "<< Signo << " (" << SegOperando << " % " << Modulo << ")\n";
-    std::cout << "Resultado: " << Resultado << " % " << Modulo << "\n";
-	std::cout<<"********************************\n";
+    std::cout << "+----------------------------------+\n";
+    std::cout << "|         Informacion              |\n";
+    std::cout << "+----------------------------------+\n";
+    std::cout << "| Operacion: (" << PriOperando << " % " << Modulo << ") " << Signo << " (" << SegOperando << " % " << Modulo << ")\n";
+    std::cout << "| Resultado: " << Resultado << " % " << Modulo << "\n";
+    std::cout << "+----------------------------------+\n";
 }
 
 int Calculadora::Sumar() {
@@ -43,6 +45,7 @@ int Calculadora::Restar() {
 int Calculadora::Multiplicacion() {
 	return ((PriOperando * SegOperando) % Modulo);
 }
+
 int Calculadora::calcularMCD(int a, int b) {
     while (b != 0) {
         int temporal = b;
@@ -75,16 +78,16 @@ int Calculadora::Inverso(int numero, int modulo) {
 }
 
 void Calculadora::ImprimirMenu() {
-	std::cout<<"********************************\n";
-	std::cout<<"** BIENVENIDO A LA CALCULADORA MODULAR **\n";
-	std::cout<<"********************************\n";
-	std::cout<< "Seleccione una opcion...\n";
-	std::cout<< "1. Sumar\n";
-	std::cout<< "2. Restar\n";
-	std::cout<< "3. Multiplicar\n";
-	std::cout<< "4. Calcular Inverso\n";
-	std::cout<< "5. Salir...\n";
-	std::cout<<"********************************\n";	
+    std::cout << "+**********************************+\n";
+    std::cout << "|     BIENVENIDO A LA CALCULADORA   |\n";
+    std::cout << "+**********************************+\n";
+    std::cout << "|    1. Sumar                       |\n";
+    std::cout << "|    2. Restar                      |\n";
+    std::cout << "|    3. Multiplicar                 |\n";
+    std::cout << "|    4. Calcular Inverso            |\n";
+    std::cout << "|    5. Salir                       |\n";
+    std::cout << "+**********************************+\n";
+    std::cout << "Ingrese una opcion: ";
 }
 
 void Calculadora::Menu() {

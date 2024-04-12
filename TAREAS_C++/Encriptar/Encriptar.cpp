@@ -1,5 +1,4 @@
 #include <fstream>
-#include <iostream>
 #include <string>
 #include "../Calculadora/Cal_modular.cpp"
 
@@ -39,29 +38,34 @@ void desencriptarArchivo(std::string& nombreArchivoEncriptado) {
 
     char caracter;
     archivoEncriptado.get(caracter); 
-
     while (archivoEncriptado.get(caracter)) {
         caracter = (caracter * claveDesencriptacion) % 256;
         archivoDesencriptado << caracter;
     }
     archivoEncriptado.close();
     archivoDesencriptado.close();
-
     std::cout << "Archivo desencriptado exitosamente." << std::endl;
 }
+
+void ImprimirMenu() {
+    std::cout << "+**********************************+\n";
+    std::cout << "|        BIENVENIDO AL MENU        |\n";
+    std::cout << "+**********************************+\n";
+    std::cout << "|     1. Encriptar archivo         |\n";
+    std::cout << "|     2. Desencriptar archivo      |\n";
+    std::cout << "|     3. Calculadora modular       |\n";
+    std::cout << "|     4. Salir                     |\n";
+    std::cout << "+**********************************+\n";
+    std::cout << "Ingrese una opcion: ";
+}
+
 int main() {
     Calculadora cal;
     std::string nombreArchivo = "hola.txt";
 
     int opcion;
     do {
-        std::cout << "****** BIENVENIDO ******" << std::endl;
-        std::cout << "******    MENU   ******" << std::endl;
-        std::cout << "1. Encriptar archivo" << std::endl;
-        std::cout << "2. Desencriptar archivo" << std::endl;
-        std::cout << "3. Ingresar a la calculadora modular" << std::endl;
-        std::cout << "4. Salir...\n";
-        std::cout << "Ingrese una opcion: ";
+        ImprimirMenu();
         std::cin >> opcion;
 
         switch (opcion) {
@@ -100,3 +104,4 @@ int main() {
 
     return 0;
 }
+
