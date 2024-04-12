@@ -52,10 +52,12 @@ int Calculadora::ajuste(int Numero) {
 }
 
 void Calculadora::informacion(char Signo, int Resultado) {
-    std::cout << "********************************\n";
-    std::cout << "Operacion: (" << PriOperando << " % " << Modulo << ") " << Signo << " (" << SegOperando << " % " << Modulo << ")\n";
-    std::cout << "Resultado: " << Resultado << " % " << Modulo << "\n";
-    std::cout << "********************************\n";
+    std::cout << "+----------------------------------+\n";
+    std::cout << "|         Informacion              |\n";
+    std::cout << "+----------------------------------+\n";
+    std::cout << "| Operacion: (" << PriOperando << " % " << Modulo << ") " << Signo << " (" << SegOperando << " % " << Modulo << ")\n";
+    std::cout << "| Resultado: " << Resultado << " % " << Modulo << "\n";
+    std::cout << "+----------------------------------+\n";
 }
 
 int Calculadora::Sumar() {
@@ -101,16 +103,16 @@ int Calculadora::Inverso(int numero, int modulo) {
 }
 
 void Calculadora::ImprimirMenu() {
-    std::cout << "********************************\n";
-    std::cout << "** BIENVENIDO A LA CALCULADORA MODULAR **\n";
-    std::cout << "********************************\n";
-    std::cout << "Seleccione una opcion...\n";
-    std::cout << "1. Sumar\n";
-    std::cout << "2. Restar\n";
-    std::cout << "3. Multiplicar\n";
-    std::cout << "4. Calcular Inverso\n";
-    std::cout << "5. Salir...\n";
-    std::cout << "********************************\n";
+    std::cout << "+**********************************+\n";
+    std::cout << "|     BIENVENIDO A LA CALCULADORA   |\n";
+    std::cout << "+**********************************+\n";
+    std::cout << "|    1. Sumar                       |\n";
+    std::cout << "|    2. Restar                      |\n";
+    std::cout << "|    3. Multiplicar                 |\n";
+    std::cout << "|    4. Calcular Inverso            |\n";
+    std::cout << "|    5. Salir                       |\n";
+    std::cout << "+**********************************+\n";
+    std::cout << "Ingrese una opcion: ";
 }
 
 void Calculadora::Menu() {
@@ -171,7 +173,11 @@ void Calculadora::Menu() {
             std::cout << "Ingrese el modulo: ";
             std::cin >> Modulo;
             Resultado = Inverso(PriOperando, Modulo);
-            std::cout << Resultado << "\n";
+            if (Resultado == -1) {
+                std::cout << "El numero no tiene inverso en el modulo " << Modulo << "\n";
+            } else {
+                std::cout << "El inverso de " << PriOperando << " modulo " << Modulo << " es: " << Resultado << "\n";
+            }
 
             std::cout << "Presione Enter para continuar...";
             std::cin.ignore();

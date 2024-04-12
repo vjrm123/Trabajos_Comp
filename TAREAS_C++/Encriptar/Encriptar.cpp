@@ -59,6 +59,7 @@ void ImprimirMenu() {
     std::cout << "Ingrese una opcion: ";
 }
 
+
 int main() {
     Calculadora cal;
     std::string nombreArchivo = "hola.txt";
