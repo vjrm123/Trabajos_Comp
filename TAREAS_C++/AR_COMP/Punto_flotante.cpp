@@ -2,16 +2,8 @@
 #include <bitset>
 #include <cstdint>
 using namespace std;
-bitset<23> Redondeo(bitset<49>j)
-{
-    bitset<23>redondeo(0);
-    for (int i = 0; i < 23; i++)
-    {
-        redondeo[i] = j[i];
-    }
-    return redondeo;
-}
-bitset<49> SumaBinaria(bitset<49>x, bitset<49>y)
+
+bitset<49> Suma_Binaria(bitset<49>x, bitset<49>y)
 {
     bitset<49> suma;
     bool acarreo = 0;
@@ -26,7 +18,7 @@ bitset<49> SumaBinaria(bitset<49>x, bitset<49>y)
     return suma;
 }
 
-bitset<8> SumaBiased(bitset<8>x, bitset<8>y)
+bitset<8> Suma_Biased(bitset<8>x, bitset<8>y)
 {
     bitset<8> Bias("10000001");
     bitset<8> Suma2Bias;
@@ -51,6 +43,18 @@ bitset<8> SumaBiased(bitset<8>x, bitset<8>y)
     }
     return SumaFinal;
 }
+
+bitset<23> Redondeo(bitset<49>j)
+{
+    bitset<23>redondeo(0);
+    for (int i = 0; i < 23; i++)
+    {
+        redondeo[i] = j[i];
+    }
+    return redondeo;
+}
+
+
 bitset<8> Normalizar(bitset<49>& retorno)
 {
     int n = 48;
@@ -70,7 +74,7 @@ bitset<8> Normalizar(bitset<49>& retorno)
     bitset<8> SumaExp(NumB);
     return SumaExp;
 }
-bitset<49> MultSignificando(bitset<49> a, bitset<49> b)
+bitset<49> Mult_Significando(bitset<49> a, bitset<49> b)
 {
     a[23] = 1;
     b[23] = 1;
@@ -79,7 +83,7 @@ bitset<49> MultSignificando(bitset<49> a, bitset<49> b)
     {
         if (b[0])
         {
-            SumaAcumulada = SumaBinaria(a, SumaAcumulada);
+            SumaAcumulada = Suma_Binaria(a, SumaAcumulada);
         }
         a <<= 1;
         b >>= 1;
@@ -98,9 +102,9 @@ union Float32Bits {
 
 int main() {
     Float32Bits value1, value2;
-    cout << "Ingresa el primer valor en formato float: ";
+    cout << "Ingresa el primer valor en tipo float: ";
     cin >> value1.floatValue;
-    cout << "Ingresa el segundo valor en formato float: ";
+    cout << "Ingresa el segundo valor en tipo float: ";
     cin >> value2.floatValue;
 
     bitset<1>signo1(value1.parts.signo);
@@ -111,23 +115,23 @@ int main() {
     bitset<8>exp2(value2.parts.exponente);
     bitset<23>sig2(value2.parts.significando);
 
-    cout << "Primer valor " << endl;
-    cout << "Signo: " << signo1 << endl;
-    cout << "Exponente: " << exp1 << endl;
-    cout << "Significando: " << sig1 << endl;
+    cout << "Primer valor \n";
+    cout << "Signo: " << signo1 << "\n";
+    cout << "Exponente: " << exp1 << "\n";
+    cout << "Significando: " << sig1 << "\n";
 
-    cout << "Segundo valor" << endl;
-    cout << "Signo: " << signo2 << endl;
-    cout << "Exponente: " << exp2 << endl;
-    cout << "Significando: " << sig2 << endl;
+    cout << "Segundo valor" << "\n";
+    cout << "Signo: " << signo2 << "\n";
+    cout << "Exponente: " << exp2 << "\n";
+    cout << "Significando: " << sig2 << "\n";
 
     if ((exp1.none() && sig1.none()) || (exp2.none() && sig2.none()))
     {
-        cout << "El resultado es: \"0\"" << endl;
+        cout << "El resultado es: \"0\"" << "\n";
         cout << "En bits es: " << bitset<1>(0) << " " << bitset<8>(0) << " " << bitset<23>(0);
     }
 
-    bitset<8>SumaExp = SumaBiased(exp1, exp2);
+    bitset<8>SumaExp = Suma_Biased(exp1, exp2);
     if ((exp1[7] == 0 && exp2[7] == 0) && SumaExp[7] == 1)
     {
         cout << "underflow de exponente NAN";
@@ -138,13 +142,13 @@ int main() {
         cout << "overflow de exponente NAN";
         return 0;
     }
-    bitset<49>multSig = MultSignificando(bitset<49>(value1.parts.significando), bitset<49>(value2.parts.significando));
+    bitset<49>multSig = Mult_Significando(bitset<49>(value1.parts.significando), bitset<49>(value2.parts.significando));
 
     bitset<8>AdiExp = Normalizar(multSig);
 
     bitset<23>SigFinal = Redondeo(multSig);
 
-    bitset<8>ExpFinal = SumaBiased(AdiExp, SumaExp);
+    bitset<8>ExpFinal = Suma_Biased(AdiExp, SumaExp);
 
     if ((AdiExp[7] == 0 && SumaExp[7] == 0) && ExpFinal[7] == 1)
     {
@@ -157,6 +161,6 @@ int main() {
         return 0;
     }
     bitset<1>SignoFinal = signo1 ^= signo2;
-    cout << "EL RESULTADO DEL PRODUCTO ES: " << SignoFinal << " " << SumaExp << " " << SigFinal << endl;
+    cout << "El resultado del producto es: " << SignoFinal << " " << SumaExp << " " << SigFinal << endl;
     return 0;
 }
