@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../Or_Cocktail/or_cocktail.cpp"
+#include "../Cocktail_Sort/cocktail_sort.cpp"
 
 bool busquedaBinaria(int *inicio, int *final, int valor) {
     while(inicio <= final) {
@@ -15,7 +15,7 @@ bool busquedaBinaria(int *inicio, int *final, int valor) {
     return false;
 }
 void Imprimir(int* inicio, int* final) {
-    std::cout << " : [ ";
+    std::cout << "[ ";
     while (inicio != final) {
         std::cout << *inicio << ", ";
         inicio++;
@@ -23,28 +23,29 @@ void Imprimir(int* inicio, int* final) {
     if (inicio == final) {
         std::cout << *inicio;
     }
-    std::cout << " ]\n";
+    std::cout << " ]\n\n";
 }
 
 
 void ImprimirMenu() {
-    std::cout << "+--------------------------------+\n";
+    std::cout << "+********************************+\n";
     std::cout << "|        MENU PRINCIPAL          |\n";
-    std::cout << "+--------------------------------+\n";
-    std::cout << "| Elige una opcion:              |\n";
-    std::cout << "| 1. Busqueda Binaria            |\n";
-    std::cout << "| 2. Ordenamiento Cocktail       |\n";
+    std::cout << "+********************************+\n";
+    std::cout << "| 1. Binary Search               |\n";
+    std::cout << "| 2. Cocktail Sort               |\n";
     std::cout << "| 3. Salir                       |\n";
-    std::cout << "+--------------------------------+\n";
+    std::cout << "+********************************+\n";
+    std::cout << "Ingrese una opcion: ";
 }
 
 void ImprimirMenuPregunta() {
-    std::cout << "+----------------------------+\n";
-    std::cout << "| DESEA SEGUIR BUSCANDO?     |\n";
-    std::cout << "+----------------------------+\n";
+    std::cout << "+****************************+\n";
+    std::cout << "| ¿ DESEA SEGUIR BUSCANDO ?  |\n";
+    std::cout << "+****************************+\n";
     std::cout << "| 1. SI                      |\n";
     std::cout << "| 2. NO                      |\n";
-    std::cout << "+----------------------------+\n";
+    std::cout << "+****************************+\n";
+    std::cout << "Ingrese una opcion: ";
 }
 
 int main() {
@@ -69,7 +70,8 @@ int main() {
                         std::cout << "\nEl numero " << ValorBuscar << " se encuentra en el Arreglo\n";
                         Imprimir(array, array + size);
                     } else {
-                        std::cout << "El numero " << ValorBuscar << " no se encuentra en el Arreglo\n\n";
+                        std::cout << "\nEl numero " << ValorBuscar << " no se encuentra en el Arreglo\n\n";
+                        Imprimir(array, array + size);
                     }
 
                     ImprimirMenuPregunta();
@@ -86,7 +88,7 @@ int main() {
                 std::cout<< "Arreglo Original: ";
                 Imprimir(array, array + size );
 
-                Ordenamiento_Cocktail(array, array + size);
+                Cocktail_Sort(array, array + size);
 
                 std::cout<< "Arreglo Ordenado: ";
                 Imprimir(array, array+size);

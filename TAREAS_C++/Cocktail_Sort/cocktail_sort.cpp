@@ -6,7 +6,7 @@ void Intercambiar(int* a, int* b) {
     *b = temp;
 }
 
-void Ordenamiento_Cocktail(int* inicio, int* fin) {
+void Cocktail_Sort(int* inicio, int* fin) {
     bool hubo_intercambio = true;
 
     while (hubo_intercambio) {
@@ -44,10 +44,6 @@ void Ordenamiento_Cocktail(int* inicio, int* fin) {
     }
 }
 
-void imprimir_arreglo(int* inicio, int* final) {
-    while (inicio <= final) {
-        std::cout << *inicio << " ";
-        inicio++;
-    }
-    std::cout << "\n";
-}
+
+
+

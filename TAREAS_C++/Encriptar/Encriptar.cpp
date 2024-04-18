@@ -29,7 +29,7 @@ void desencriptarArchivo(std::string& nombreArchivoEncriptado) {
     std::cin >> claveDesencriptacion;
 
     if (claveDesencriptacion != calculadora.Inverso(claveEncriptacion, 256)) {
-        std::cerr << "ERROR NO ES LA CLAVE " << std::endl;
+        std::cout << "ERROR NO ES LA CLAVE CON LO CUAL SE LLEGO HA ENCRIPTAR" << std::endl;
         return;
     }
 
@@ -64,7 +64,7 @@ int main() {
     Calculadora cal;
     std::string nombreArchivo = "hola.txt";
 
-    int opcion;
+    int opcion, Resultado;
     do {
         ImprimirMenu();
         std::cin >> opcion;
@@ -73,8 +73,16 @@ int main() {
             case 1: {
                 int clave;
                 std::cout<< "Ingresa la clave: "; std::cin>>clave;
-                encriptarArchivo(nombreArchivo, clave);
-                std::cout << "Archivo encriptado exitosamente" << std::endl;
+                Resultado = cal.Inverso(clave, 256);
+
+                if(Resultado == -1) {
+                    std::cout<< "ERROR!!! La clave no tiene inverso en el modulo " << 256 << "\n";
+                } else {
+                    std::cout<< "Su contraseña es: " << Resultado << "\n";
+                    encriptarArchivo(nombreArchivo, clave);
+                    std::cout << "Archivo encriptado exitosamente" << std::endl;
+                }
+
                 std::cout << "Presione Enter para continuar...\n";
                 std::cin.ignore();
                 std::cin.get();
