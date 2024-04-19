@@ -63,8 +63,8 @@ void ImprimirMenu() {
 int main() {
     Calculadora cal;
     std::string nombreArchivo = "hola.txt";
-
     int opcion, Resultado;
+    
     do {
         ImprimirMenu();
         std::cin >> opcion;
