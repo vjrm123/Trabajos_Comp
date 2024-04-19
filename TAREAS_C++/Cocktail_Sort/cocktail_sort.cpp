@@ -12,7 +12,6 @@ void Cocktail_Sort(int* inicio, int* fin) {
     while (hubo_intercambio) {
         hubo_intercambio = false;
 
-        // Recorrido de izquierda a derecha
         int* i = inicio;
         while (i != fin) {
             if (*i > *(i + 1)) {
@@ -22,7 +21,6 @@ void Cocktail_Sort(int* inicio, int* fin) {
             i++;
         }
 
-        // Si no hubo intercambios en el recorrido anterior, se termina
         if (!hubo_intercambio) {
             break;
         }
@@ -30,7 +28,6 @@ void Cocktail_Sort(int* inicio, int* fin) {
         hubo_intercambio = false;
         fin--;
 
-        // Recorrido de derecha a izquierda
         i = fin;
         while (i != inicio) {
             if (*i < *(i - 1)) {
