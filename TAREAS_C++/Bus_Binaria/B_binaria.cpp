@@ -56,7 +56,10 @@ void ImprimirMenuPregunta() {
 int main() {
     
     int array[] = { 1,234, 12, 100, 500, 2, 3, 4, 5, 6, 7, 8, 9 };
-    int array1[] = { 1,234, 12, 100, 500, 2, 3, 4, 5, 6, 7, 8, 9 };
+    int array1[13] = { 1,234, 12, 100, 500, 2, 3, 4, 5, 6, 7, 8, 9 };
+    /*for (int i = 0; i < size; i++) {
+        array1[i] = rand() % 100;
+    }*/
     int size1 = sizeof(array1) / sizeof(int);
     int size = sizeof(array) / sizeof(int);
     int Opcion;
