@@ -15,11 +15,11 @@ char cipher(char ent, int key) {
 }
 
 void procesa(char (*matCad)[200], int matTam, char (*oper)(char, int), int key) {
-    char (*cadenaPuntero)[200] = matCad;
+    char (*Puntero)[200] = matCad;
     char (*finMatriz)[200] = matCad + matTam;
 
-    while (cadenaPuntero != finMatriz) {
-        char *caracter = *cadenaPuntero;
+    while (Puntero != finMatriz) {
+        char *caracter = *Puntero;
         char *finCadena = caracter;
 
         while (*finCadena != '\0') {
@@ -27,7 +27,7 @@ void procesa(char (*matCad)[200], int matTam, char (*oper)(char, int), int key) 
             finCadena++;
         }
 
-        cadenaPuntero++;
+        Puntero++;
     }
 }
 

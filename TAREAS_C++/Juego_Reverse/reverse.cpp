@@ -60,14 +60,13 @@ void ImprimirTablero() {
 bool VoltearFichasDerecha(int fila, int columna, char jugador) {
     char oponente = (jugador == 'X') ? 'O' : 'X';
     bool fichasVolteadas = false;
-    const int N = 8;
 
     int j = columna + 1;
-    while (j < N && tablero[fila][j] == oponente) {
+    while (j < 8 && tablero[fila][j] == oponente) {
         j++;
     }
 
-    if (j < N && tablero[fila][j] == jugador) {
+    if (j < 8 && tablero[fila][j] == jugador) {
         for (int k = columna + 1; k < j; k++) {
             tablero[fila][k] = jugador;
         }
@@ -80,7 +79,6 @@ bool VoltearFichasDerecha(int fila, int columna, char jugador) {
 bool VoltearFichasIzquierda(int fila, int columna, char jugador) {
     char oponente = (jugador == 'X') ? 'O' : 'X';
     bool fichasVolteadas = false;
-    const int N = 8;
 
     int j = columna - 1;
     while (j >= 0 && tablero[fila][j] == oponente) {
@@ -100,7 +98,6 @@ bool VoltearFichasIzquierda(int fila, int columna, char jugador) {
 bool VoltearFichasArriba(int fila, int columna, char jugador) {
     char oponente = (jugador == 'X') ? 'O' : 'X';
     bool volteadas = false;
-    const int N = 8;
 
     int i = fila - 1;
     while (i >= 0 && tablero[i][columna] == oponente) {
@@ -119,14 +116,13 @@ bool VoltearFichasArriba(int fila, int columna, char jugador) {
 bool VoltearFichasAbajo(int fila, int columna, char jugador) {
     char oponente = (jugador == 'X') ? 'O' : 'X';
     bool volteadas = false;
-    const int N = 8;
 
     int i = fila + 1;
-    while (i < N && tablero[i][columna] == oponente) {
+    while (i < 8 && tablero[i][columna] == oponente) {
         i++;
     }
 
-    if (i < N && tablero[i][columna] == jugador) {
+    if (i < 8 && tablero[i][columna] == jugador) {
         for (int j = fila + 1; j < i; j++) {
             tablero[j][columna] = jugador;
         }
@@ -167,6 +163,7 @@ int main() {
         VoltearFichasAbajo(fila - 1, columna - 1, jugador);
 
         system("cls");
+        ImprimirScore();
         ImprimirTablero();
 
         ContarFichasEnTablero(&contX, &contO);
