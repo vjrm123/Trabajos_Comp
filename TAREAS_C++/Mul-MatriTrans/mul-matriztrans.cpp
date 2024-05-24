@@ -17,8 +17,8 @@ public:
     void imprimir() const;
     Matriz Transpuesta() const;
     Matriz multiplicar(const Matriz& otra) const;
-
 };
+
 
 Matriz::Matriz(int filas, int columnas) : filas(filas), columnas(columnas) {
     reservar();
@@ -77,7 +77,6 @@ Matriz Matriz::Transpuesta() const {
 }
 
 Matriz Matriz::multiplicar(const Matriz& otra) const {
-
     Matriz resultado(filas, otra.columnas);
     for (int i = 0; i < filas; ++i) {
         for (int j = 0; j < otra.columnas; ++j) {
@@ -94,8 +93,9 @@ void imprimirMenu() {
     std::cout << "+***********************************+\n";
     std::cout << "|            MENU                   |\n";
     std::cout << "+***********************************+\n";
-    std::cout << "| 1. Multiplicacion de matrices     |\n";
-    std::cout << "| 2. Salir                          |\n";
+    std::cout << "| 1. Calcular transpuesta           |\n";
+    std::cout << "| 2. Multiplicar por transpuesta    |\n";
+    std::cout << "| 3. Salir                          |\n";
     std::cout << "+***********************************+\n";
     std::cout << "Ingresa una de las opciones: ";
 }
@@ -121,20 +121,50 @@ int main() {
             matriz.imprimir();
 
             Matriz transpuesta = matriz.Transpuesta();
-            std::cout << "Matriz transpuesta:\n";
+            std::cout << "\nMatriz transpuesta:\n";
+            transpuesta.imprimir();
+
+            std::cout << "Pulse enter para continuar.\n";
+            std::cin.ignore();
+            std::cin.get();
+
+            break;
+        }
+        case 2: {
+
+            std::cout << "Ingresa la cantidad de columnas de tu matriz: ";
+            std::cin >> columnas;
+            std::cout << "Ingresa la cantidad de filas de tu matriz: ";
+            std::cin >> filas;
+
+            Matriz matriz(filas, columnas);
+            matriz.llenar();
+
+            std::cout << "Matriz original:\n";
+            matriz.imprimir();
+
+            Matriz transpuesta = matriz.Transpuesta();
+            std::cout << "\nMatriz transpuesta:\n";
             transpuesta.imprimir();
 
             Matriz resultado = matriz.multiplicar(transpuesta);
             std::cout << "\nMatriz resultante de la multiplicación:\n";
             resultado.imprimir();
 
+            std::cout << "Pulse enter para continuar.\n";
+            std::cin.ignore();
+            std::cin.get();
+
             break;
         }
-        case 2:
+        case 3:
             std::cout << "Saliendo!!\n";
             break;
+        default:
+            std::cout << "Opcion no valida\n";
+            break;
         }
-    } while (opcion != 2);
+    } while (opcion != 3);
 
     return 0;
 }
