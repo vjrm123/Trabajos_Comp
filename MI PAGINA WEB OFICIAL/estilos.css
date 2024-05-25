@@ -27,6 +27,7 @@
   --transition: all 0.4s ease-in;
 }
 
+
 body {
   font-family: "Great Vibes", cursive;
   font-family: "Rubik", sans-serif;
@@ -157,16 +158,9 @@ section {
 }
 .btn:hover {
   color: var(--color-tertiary);
-  box-shadow: 1px 1px 10px var(--color-tertiary);
+  box-shadow: var(--inner-shadow);
 }
-.btn.superposicion:hover::after {
-  visibility: visible;
-  transform: scale(100);
-  -webkit-transform: scale(100);
-  -moz-transform: scale(100);
-  -ms-transform: scale(100);
-  -o-transform: scale(100);
-}
+
 .scrollbar::-webkit-scrollbar {
   height: 0.66rem;
 }
@@ -188,16 +182,22 @@ section {
   width: 0.8rem;
 }
 
+hr {
+  color: var(--color-tertiary);
+}
 /* ======================================================
               NAVBAR
 ========================================================*/
 nav {
   padding: 0.3rem 0;
   transition: 0.3s ease-in-out;
-  -webkit-transition: 0.3s ease-in-out;
-  -moz-transition: 0.3s ease-in-out;
-  -ms-transition: 0.3s ease-in-out;
-  -o-transition: 0.3s ease-in-out;
+  position: fixed; /* Agrega esta línea */
+  top: 0; /* Agrega esta línea */
+  left: 0; /* Agrega esta línea */
+  width: 100%; /* Agrega esta línea */
+  background: var(--color-bg); /* Agrega esta línea */
+  z-index: 11111; /* Agrega esta línea */
+  box-shadow: var(--shadow); /* Agrega esta línea */
 }
 nav.scrolling {
   position: fixed;
@@ -336,4 +336,89 @@ nav.scrolling {
   -moz-border-radius: 0.5rem;
   -ms-border-radius: 0.5rem;
   -o-border-radius: 0.5rem;
+}
+
+hr {
+  color: var(--color-tertiary);
+}
+/* Estilos para la sección de universidad */
+.universidad {
+  padding: 60px 0;
+  background-color: var(--color-bg);
+}
+
+.universidad .contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  
+}
+
+.universidad-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.compañeros-izquierda, .profesores-derecha {
+  flex: 1;
+  margin: 20px;
+  padding: 20px;
+  background-color: var(--color-bg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  color: var(--color-tertiary);
+  box-shadow: var(--inner-shadow);
+}
+
+
+.compañeros-izquierda h2, .profesores-derecha h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.compañeros-izquierda p, .profesores-derecha p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 20px;
+}
+
+.btns {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: var(--color-bg);
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  box-shadow: var(--inner-shadow);
+  color: var(--color-tertiary);
+}
+
+.btns:hover {
+  transform: translateY(-5px);
+  border: 1px solid var(--color-tertiary);
+  box-shadow: 0 0 50px var(--color-tertiary);
+}
+
+#compañeros-lista, #docentes-lista {
+  margin-top: 20px;
+  background: var(--color-bg);
+  padding: 20px;
+  border-radius: 8px;
+  display: none; /* Ocultar inicialmente */
+}
+
+/* Media queries para diseño responsivo */
+@media (max-width: 768px) {
+  .universidad-info {
+      flex-direction: column;
+  }
+
+  .compañeros-izquierda, .profesores-derecha {
+      margin: 10px 0;
+  }
 }
