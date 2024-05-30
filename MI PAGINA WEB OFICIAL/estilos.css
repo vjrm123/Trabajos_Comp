@@ -17,7 +17,7 @@
 :root {
   --color-bg: #e1e1e1;
   --color-text: #212121;
-  --color-tertiary: #3F7FBF;
+  --color-tertiary: #3f5dbf;
 
   --shadow: 6px 6px 12px #bababa, -6px -6px 12px #ffffff;
   --inner-shadow: inset 6px 6px 12px #bababa, inset -6px -6px 12px #ffffff;
@@ -41,7 +41,7 @@ body {
 body.active {
   --color-bg: #212121;
   --color-text: #e0e0e0;
-  --color-tertiary: crimson;
+  --color-tertiary: #fc1717;
 
   --shadow: 0.5rem 0.5rem 1rem #111, -6px -6px 12px #333;
   --inner-shadow: inset 0.5rem 0.5rem 1rem #111, inset -6px -6px 12px #333;
@@ -347,6 +347,11 @@ hr {
   background-color: var(--color-bg);
 }
 
+.universidad .titulo h2 {
+  font-weight: 500;
+  margin-top: 50px;
+}
+
 .universidad .contenedor {
   max-width: 1200px;
   margin: 0 auto;
@@ -409,16 +414,248 @@ hr {
   background: var(--color-bg);
   padding: 20px;
   border-radius: 8px;
-  display: none; /* Ocultar inicialmente */
+  display: none; 
+}
+
+/*END SECCTION UNIVERSIDAD*/
+
+/* ======================================================
+              TESTIMONIAL
+========================================================*/
+.frases-container {
+  display: flex;
+  height: 55vh;
+  align-items: flex-start;
+  gap: 1rem;
+  border-radius: 0.4rem;
+  overflow-x: auto;
+  padding: 4rem 1rem 2rem;
+}
+.frases .titulo h2 {
+  font-weight: 500;
+  margin-top: 20px;
+}
+.frases-container .card {
+  position: relative;
+  min-width: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 0.4rem;
+  padding: 4rem 2rem 2rem;
+  color: var(--color-text);
+  box-shadow: var(--inner-shadow);
+}
+.frases-container img {
+  position: absolute;
+  top: -3rem;
+  width: 6rem;
+  border-radius: 50%;
+  margin: auto;
+  border: 0.3rem solid var(--color-bg);
+  box-shadow: var(--shadow);
+}
+.frases-container h3 {
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding-bottom: 0.7rem;
+}
+
+.card.card-1:hover,
+.card.card-2:hover,
+.card.card-3:hover {
+  transform: translateY(-5px);
+  border: 1px solid var(--color-tertiary);
 }
 
 /* Media queries para diseño responsivo */
-@media (max-width: 768px) {
-  .universidad-info {
+
+/*========================================================*/
+@media (max-width: 1050px) {
+  #boton-menu {
+    display: block;
+  }
+  #boton-tema{
+    margin-right: -25px;
+  }
+  .lista-navegacion {
+    flex-direction: column;
+    position: absolute;
+    top: 11rem;
+    right: 0;
+    font-size: 25px;
+    width: var(--width-lg);
+    box-shadow: var(--shadow);
+    background: var(--color-bg);
+    min-width: 300px;
+    height: 30rem;
+    text-align: center;
+    border-radius: 0.2rem;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+    padding: 2rem 0;
+    z-index: 9999999;
+    visibility: hidden;
+    opacity: 0;
+    transition: var(--transition);
+    -webkit-transition: var(--transition);
+    -moz-transition: var(--transition);
+    -ms-transition: var(--transition);
+    -o-transition: var(--transition);
+  }
+  .lista-navegacion a {
+    font-size: 20px;
+  }
+  .lista-navegacion.active {
+    top: 4rem;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .frases-container .card {
+    min-width: 50%;
+  }
+}
+/* ============= Ipad Pro 11 ====================== */
+@media (max-width: 835px) {
+
+  .derecha {
+    padding-top: 20px;
+  }
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+  }
+  h3 {
+    font-size: 1.3rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+  section {
+    padding: 3rem 0;
+  }
+  #menu-btn {
+    margin-right: -50px;
+  }
+  .logo {
+    margin-left: -50px;
+  }
+  .inicio-contenedor {
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .inicio .derecha img {
+    max-width: 25rem;
+  }
+  .inicio .izquierda {
+    text-align: center;
+  }
+
+  .frases {
+    height: 100vh;
+  }
+  .frases .titulo h2 {
+    margin-top: 100px;
+  }
+}
+/* ========== Ipad Mini =============== */
+@media (max-width: 769px) {
+  .inicio .derecha img {
+    max-width: 15rem;
+  }
+    .universidad-info {
       flex-direction: column;
   }
 
   .compañeros-izquierda, .profesores-derecha {
       margin: 10px 0;
+  }
+
+  .frases {
+    flex-direction: column;
+  }
+
+  .card.card-1,
+  .card.card-2,
+  .card.card-3 {
+    margin: 10px 0;
+  }
+}
+
+/* ======================================================
+              RESPONSIVE MOBILE
+========================================================*/
+@media (max-width: 429px) {
+  .logo {
+    margin-left: -30px;
+    font-size: 1rem;
+  }
+  .logo span {
+    font-size: 1rem;
+  }
+  #menu-btn {
+    margin-right: -30px;
+    font-size: 13px;
+  }
+  #theme-btn {
+    font-size: 13px;
+  }
+  .inicio .derecha img {
+    display: block;
+    height: 14rem;
+    max-width: 100%;
+    margin-top: -15px;
+  }
+  .inicio .izquierda {
+    position: relative;
+    margin-top: -20px;
+    z-index: 9999;
+  }
+  .inicio .iconos-sociales {
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+  .inicio .izquierda h1 {
+    line-height: 2.2rem;
+    margin-bottom: 2px;
+  }
+  .inicio .izquierda h1 span {
+    font-size: 2.1rem;
+  }
+  .inicio .izquierda h3 {
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
+  .inicio .izquierda p {
+    font-size: 0.7rem;
+  }
+
+  .inicio .iconos-sociales i {
+    height: 5rem;
+    width: 5rem;
+    box-shadow: var(--shadow);
+    background: var(--color-bg);
+    padding: 0.8rem;
+    margin: 0.7rem;
+    font-weight: 800;
+    border-radius: 0.2rem;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+  }
+
+  .frases .titulo h2 {
+    margin-top: 50px;
+  }
+  .frases-container .card {
+    min-width: 100%;
   }
 }

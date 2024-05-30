@@ -1,5 +1,13 @@
-/* start secction universidad */
+// ============== MENU NAVBAR ================
+const navlist = document.querySelector(".lista-navegacion");
+const menuBtn = document.querySelector(".ri-menu-line");
 
+menuBtn.onclick = function () {
+  navlist.classList.toggle("active");
+  menuBtn.classList.toggle("ri-arrow-up-double-line");
+};
+
+/* start secction universidad */
 const companeros = [
   { name: "Victor Juan Ramos Mamani", url: "https://vjrm123.github.io/paginaWeb/" },
   { name: "Sergio Alejandro Paucar Cruz", url: "https://sergio-alejandro-paucar-cruz.web.app/" },
