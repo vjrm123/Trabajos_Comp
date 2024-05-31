@@ -46,18 +46,18 @@ void imprimirMatriz(int** A, int filas, int columnas) {
 }
 
 int** multiplicarMatrices(int** A, int filasA, int columnasA, int** B, int filasB, int columnasB) {
-    int** resultado = nullptr;
-    asignarMemoria(resultado, filasA, columnasB);
+    int** Resultado = nullptr;
+    asignarMemoria(Resultado, filasA, columnasB);
 
-    for (int** filaA = A, **filaRes = resultado; filaA < A + filasA; ++filaA, ++filaRes) {
-        for (int* elemRes = *filaRes; elemRes < *filaRes + columnasB; ++elemRes) {
-            *elemRes = 0;
+    for (int** filaA = A, **filaRes = Resultado; filaA < A + filasA; ++filaA, ++filaRes) {
+        for (int* ptr = *filaRes; ptr < *filaRes + columnasB; ++ptr) {
+            *ptr = 0;
             for (int** filaB = B; filaB < B + filasB; ++filaB) {
-                *elemRes += *(*filaA + (filaB - B)) * *(*filaB + (elemRes - *filaRes));
+                *ptr += *(*filaA + (filaB - B)) * *(*filaB + (ptr - *filaRes));
             }
         }
     }
-    return resultado;
+    return Resultado;
 }
 
 void imprimirMenu() {
@@ -85,7 +85,7 @@ int main() {
         switch (Opcion) {
 
         case 1:
-            std::cout<<"Ingrese la columna: "; std::cin >> Columna;
+            std::cout << "Ingrese la columna: "; std::cin >> Columna;
             std::cout << "Ingrese la fila: "; std::cin >> Fila;
             asignarMemoria(Matriz, Fila, Columna);
             inicializarMatriz(Matriz, Fila, Columna);
@@ -116,7 +116,7 @@ int main() {
             imprimirMatriz(Matriz, Fila, Columna);
             cout << "\nMatriz transpuesta:\n";
             imprimirMatriz(matrizTranspuesta, Columna, Fila);
-            cout << "\nMatriz resultado (A * A^T):\n";
+            cout << "\nMatriz resultado (Matriz * MatrizTranspuesta):\n";
             imprimirMatriz(matrizResultado, Fila, Fila);
 
             liberarMemoria(Matriz, Fila);
