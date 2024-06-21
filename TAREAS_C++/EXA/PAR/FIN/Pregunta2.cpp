@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 template<class T>
 class Stack {
@@ -6,13 +7,16 @@ public:
     Stack() : top(nullptr) {}
     ~Stack() {
         while (!isEmpty()) {
-            Pop();
+            
+           T value = Pop();
+            std::cout << "eliminando " << value;
         }
     }
 
     void Push(const T& object);
     T Pop();
     bool isEmpty();
+    void Print();
 
 private:
     struct StackNode {
@@ -39,13 +43,23 @@ void Stack<T>::Push(const T& obj) {
 template<class T>
 T Stack<T>::Pop() {
     if (isEmpty()) {
-        throw std::out_of_range("La pila está vacía");
+        std::cout << "la lista esta vacia";
     }
     StackNode* nodeToDelete = top;
     T data = nodeToDelete->Data;
     top = top->Next;
     delete nodeToDelete;
+
     return data;
+}
+
+template<class T>
+void Stack<T>::Print() {
+    std::cout << "HEAD-> ";
+    for (StackNode* P = top; P; P = P->Next) {
+        std::cout << P->Data << "-> ";
+    }
+    std::cout << "NULL\n";
 }
 
 int main() {
@@ -55,9 +69,7 @@ int main() {
     stack.Push(2);
     stack.Push(3);
 
-    std::cout << "Elemento en la cima: " << stack.Pop() << std::endl;
-    std::cout << "Elemento en la cima: " << stack.Pop() << std::endl;
-    std::cout << "Elemento en la cima: " << stack.Pop() << std::endl;
+    stack.Print();
 
     return 0;
 }

@@ -86,11 +86,13 @@ int main() {
     // Crear la lista enlazada de prueba
     Nodo* lista = new Nodo(1);
     lista->Next = new Nodo(2);
-    lista->Next->Next = new Nodo(3);
-    lista->Next->Next->Next = new Nodo(4);
-    lista->Next->Next->Next->Next = new Nodo(5);
-    lista->Next->Next->Next->Next->Next = new Nodo(6);
-    lista->Next->Next->Next->Next->Next->Next = new Nodo(7);
+    lista->Next->Next = new Nodo(11);
+    lista->Next->Next->Next = new Nodo(12);
+    lista->Next->Next->Next->Next = new Nodo(3);
+    lista->Next->Next->Next->Next->Next = new Nodo(4);
+    lista->Next->Next->Next->Next->Next->Next = new Nodo(5);
+    lista->Next->Next->Next->Next->Next->Next->Next = new Nodo(6);
+    lista->Next->Next->Next->Next->Next->Next->Next->Next = new Nodo(7);
 
     std::cout << "Lista original: ";
     imprimirLista(lista);

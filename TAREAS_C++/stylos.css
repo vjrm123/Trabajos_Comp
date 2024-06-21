@@ -1,48 +1,156 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,700;1,700&display=swap");
 
-.icons a .layer{
-  width: 55px;
-  height: 55px;
-  transition: transform 0.3s;
+*{
+  margin: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.icons a:hover .layer {
-  transform: rotate(-35deg) skew(20deg);
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #191629;
+}
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px; /* Espacio entre las tarjetas */
+  justify-content: center; /* Centra las tarjetas en el contenedor */
+  max-width: 1200px;
+}
+.card{
+  position: relative;
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  transition-delay: 0.5s;
+  cursor: pointer;
 }
 
-.icons a .layer span {
-  position: absolute;
+.card:hover{
+  width: 600px;
+  transition-delay: .5s;
+}
+.card .circle{
+  position: relative;;
   top: 0;
   left: 0;
-  height: 100%;
   width: 100%;
-  border: 1px solid #f4f;
-  border-radius: 5px;
-  transition: all 0.3s;
+  height: 100%;
+  border-radius: 20px;
+  align-items: center;
 }
 
-.icons a .layer span.fab {
-  font-size: 30px;
-  line-height: 55px;
-  text-align: center;
+.card .circle button {
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
 }
 
-.icons a:hover .layer span:nth-child(1) {
-  opacity: 0.2;
+.card .circle::before{
+  content: "";
+  position: absolute;
+  top: 30;
+  left: 2;
+  right: 2;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: #191919;
+  border: 8px solid Var(--clr);
+  filter: drop-shadow(0 0 10px var(--clr)) drop-shadow(0 0 60px var(--clr));
+  transition: 0.5s, background 0.5s;
+  transition-delay: 0.75s, 1s;
 }
 
-.icons a:hover .layer span:nth-child(2) {
-  opacity: 0.4;
-  transform: translate(5px, -5px);
+.card:hover .circle::before{
+  transition-delay: 0.5s;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: var(--clr);
+
 }
 
-.icons a:hover .layer span:nth-child(3) {
-  opacity: 0.6;
-  transform: translate(10px, -10px);
+.card .circle .logo{
+  position: relative;
+  height: 150px;
+  width: 150px;
+  transition: 0.5s;
+  transition-delay: 0.5s;
+
 }
 
-.icons a:hover .layer span:nth-child(4) {
-  opacity: 0.8;
-  transform: translate(15px, -15px);
+.card:hover .circle .logo{
+  transform: scale(0);
+  transition-delay: 0s;
+}
+
+.card .product_img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0) rotate(240deg);
+  height: 300px;
+  transition: 0.5s ease-in-out;
+}
+
+.card:hover .product_img{
+  transition-delay: 0.75s;
+  top: 50%;
+  left: 75%;
+  height: 350px;
+  transform: translate(-45%, -55%) scale(1) rotate(20deg);
+}
+
+.card .content{
+  position: absolute;
+  width: 50%;
+  left: 20%;
+  padding: 20px;
+  opacity: 0;
+  transition: 0.5s;
+  visibility: hidden;
+}
+
+.card:hover .content{
+  transition-delay: 0.75s;
+  opacity: 1;
+  visibility: visible;
+  left: 20px;
+}
+
+.card  .content h2 {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  line-height: 1em;
+}
+
+.card .content p{
+  color: #fff;
+
+}
+
+button{
+  position: relative;
+  color: #111;
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
